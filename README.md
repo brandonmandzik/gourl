@@ -1,5 +1,6 @@
 # gourl
-Gourl is a cli tool that prints the html-body into the standard-ouput. With the flag -o you can specify a output file with path. 
+__Author__ - _Brandon Mandzik, 2020_ <br>
+_Gourl_  is a cli tool that prints the html-body into the standard-ouput. With the flag -o you can specify a output file with path. 
 ```go
 $ gourl -o htmlBody.htm https://golang.org
 ```
