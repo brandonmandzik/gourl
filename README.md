@@ -1,10 +1,11 @@
 # gourl
 __Author__ - _Brandon Mandzik, 2020_ <br>
-_Gourl_  is a cli tool that prints the html-body into the standard-ouput. With the flag -o you can specify a output file with path.
-with -header you will get printed the url information of a url 
+_Gourl_  is a cli tool that can either print a html-body or header information to the user.
+
+### Flags usage 
 ```go
-$ gourl -o htmlBody.htm https://golang.org
-$ gorul -header https://golang.org
+$ gourl -o htmlBody.htm https://golang.org // it will also create new directory if needed
+$ gorul -header https://golang.org // it's a bool flag
 ```
 
 __Requieres__: go 1.13 AND darwin system
