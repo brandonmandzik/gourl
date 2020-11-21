@@ -13,10 +13,10 @@ import (
 
 var (
 	flagOutput = flag.String("o", "", "output File")
+	flagHeader = flag.Bool("header", false, "print HTTP-Header")
 )
 
 func main() {
-
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
@@ -24,14 +24,22 @@ func main() {
 		os.Exit(1)
 	}
 	url := args[0]
-
 	res, err := http.Get(url)
 	if err != nil {
 		fmt.Printf("Error while reading the url: %s\nError: %v", url, err)
 	}
 	defer res.Body.Close()
 	var w io.Writer = os.Stdout
-
+	if *flagHeader {
+		for k, value := range res.Header {
+			fmt.Fprintf(w, "%s :\n", k)
+			for i, v := range value {
+				// print of each value
+				fmt.Fprintf(w, "  %03d:    %s	\n", i+1, v)
+			}
+		}
+		os.Exit(0)
+	}
 	if *flagOutput != "" {
 		err := os.MkdirAll(filepath.Dir(*flagOutput), 0755)
 		if err != nil {
